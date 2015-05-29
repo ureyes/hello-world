@@ -1,0 +1,50 @@
+<!-- Season Games -->
+<template name="seasonGamesMain">
+	<!-- dashboardHeader defined in seasonManager.html -->
+	{{> dashboardHeader }}
+	<div class="container text-center" >
+		Under Construction
+		{{> yield}}
+	</div>
+</template>
+
+<template name="seasonGamesList">
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th colspan=5>Filter: </th>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Group</th>
+				<th>Label</th>
+				<th>Date</th>
+				<th>Teams</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{ #each gamesView }}
+				{{ > gameView }}
+			{{ /each }}
+		</tbody>
+	</table>
+</template>
+
+<template name="gameView">
+	<tr>
+		<td><input type="checkbox"/></td>
+		<td class="text-left">{{ group }}</td>
+		<td class="text-left">{{ name }}</td>
+		<td class="text-left">{{ dateDisplay }}</td>
+		<td class="text-left">
+			<div class="btn-group btn-group-game-{{ _id }}" data-toggle="buttons">
+	      		<label class="btn btn-default {{#if seasonInfo.enabled}}active{{/if}}">
+					<input type="radio" checked="{{#if seasonInfo.enabled}}true{{/if}}" class="btn-grp-status" name="gameviewteam_{{ _id }}" value="1" autocomplete="off">{{ team1 }}
+				</label>&nbsp;
+				<label class="btn btn-default {{#if seasonInfo.hidden}}active{{/if}}">
+					<input type="radio" checked="{{#if seasonInfo.hidden}}true{{/if}}"  class="btn-grp-status" name="gameviewteam_{{ _id }}" value="2" autocomplete="off">{{ team2 }}
+				</label>
+			</div>
+		</td>
+	</tr>
+</template>

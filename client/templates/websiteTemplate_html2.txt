@@ -1,0 +1,119 @@
+<template name="homeLayout">
+	{{> websiteHeader }}
+	
+	<div id="homeMain" class="">
+		<div class="container text-center" >
+			<h1>Easily manage your football pools</h1>
+		</div>
+
+		{{> yield}}
+	</div>
+	
+	<!-- This is the home template
+	Lets say <a href="{{pathFor 'hello'}}">hello!</a> 
+	{{#if currentUser}}
+		{{> autoredirect}}
+	{{/if}} -->
+</template>	
+
+
+<!-- Login with toggle for new user registration -->
+<template name="loginUser">
+	<div class="container" style="padding: 0px 0px 0px 300px">
+		<form id="form-login" class="form-horizontal" role="form">
+	      	<div class="form-group" >
+	      		<label for="accountEmail" class="control-label col-xs-2">Email</label>
+	      		<div class="col-xs-10">
+		    		<input type="email" placeholder="Email" class="form-control" id="accountEmail" name="accountEmail" data-required/>
+		    	</div>
+		    </div>
+		    <div class="form-group">
+		    	<label for="accountPassword" class="control-label col-xs-2">Password</label>
+	      		<div class="col-xs-10">
+		     		<input type="password" placeholder="Password" class="form-control" id="accountPassword" name="accountPassword" data-required/>
+		     	</div>
+		    </div>
+		   	<div class="form-group">
+		   		<label for="" class="control-label col-xs-2">&nbsp;</label>
+		   		<div class="col-xs-10">
+		      		<input type="submit" id="loginAccountBtn" class="btn btn-primary btn-lg" value="Login" />
+		      	</div>
+	     	</div>
+	     	<div class="form-group">
+	     		<label for="" class="control-label col-xs-2">&nbsp;</label>
+		     	<button id="newRegisterBtn" type="button" class="btn btn-link">New to poolzy? Register here.</button>
+	     	</div>
+		</form>
+	</div>
+</template>
+
+<template name="registerUser">
+	<div class="container" style="padding: 0px 0px 0px 300px">
+		<form id="form-register" class="form-horizontal" role="form">
+	      	<div class="form-group" >
+	      		<label for="registerEmail" class="control-label col-xs-2">Email</label>
+	      		<div class="col-xs-10">
+		    		<input type="email" placeholder="Email" class="form-control" id="registerEmail" required/>
+		    	</div>
+		    </div>
+		    <div class="form-group">
+		    	<label for="registerUsername" class="control-label col-xs-2">Name</label>
+	      		<div class="col-xs-10">
+		    		<input type="text" placeholder="Name" class="form-control" id="registerUsername" required/>
+		    	</div>
+		    </div>
+		    <div class="form-group">
+		    	<label for="registerPassword" class="control-label col-xs-2">Password</label>
+	      		<div class="col-xs-10">
+		     		<input type="password" placeholder="Password" class="form-control" id="registerPassword" required/>
+		     	</div>
+		    </div>
+		     <div class="form-group">
+		    	<label for="registerPasswordRepeat" class="control-label col-xs-2">Confirm Password</label>
+	      		<div class="col-xs-10">
+		     		<input type="password" placeholder="Repeat Password" class="form-control" id="registerPasswordRepeat" required/>
+		     	</div>
+		    </div>
+		   	<div class="form-group">
+		   		<label for="" class="control-label col-xs-2">&nbsp;</label>
+		   		<div class="col-xs-10">
+			      	<input type="submit" id="create-account" class="btn btn-warning btn-lg" value="Create Account" />
+			      </div>
+	     	</div>
+	     	<div class="form-group">
+	     		<label for="" class="control-label col-xs-2">&nbsp;</label>
+	     		<button id="loginReturnBtn" type="button" class="btn btn-link">Existing user? Sign in.</button>
+	     	</div>
+		</form>
+	</div>
+</template>
+
+<template name="websiteHeader">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!--<div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Brand</a>
+	    </div>-->
+	    <div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#about">About</a></li>
+	        <li><a href="#contact">Contact</a></li>
+	      </ul>
+	    </div><!--/.nav-collapse -->
+	  </div>
+	</div>
+</template>
+
+
+<template name="hello">
+	<h1>Welcome to Meteor hello!</h1>
+
+	<button>Click Me</button>
+	<p>You've pressed the button {{counter}} times.</p>
+</template>
