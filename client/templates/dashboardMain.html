@@ -34,13 +34,15 @@
 		            </div>
 		            <div id="collapseTwo" class="panel-collapse collapse">
 		                <div class="panel-body">
-		                    <form id="form-register" class="form-horizontal" role="form">
+		                    <form id="form-join-season" class="form-horizontal" role="form">
 			                    <div class="form-group" >
 						      		<label for="seasonCode" class="control-label col-xs-3">Season Code</label>
 						      		<div class="col-xs-6">
 							    		<input type="text" placeholder="Season Code" class="form-control" id="seasonCode" required/>
-							    		<button id="loginReturnBtn" type="button" class="btn btn-primary btn-lg" style="margin-top: 10px">Join</button>
-							    		<button id="loginReturnBtn" type="button" class="btn btn-link" style="margin-top: 10px; font-style: italic">Can't remember the code?</button>
+							    		<div id="alertSeason_notexist" class="alert alert-danger alert-block fade hide" style="margin: 5px 0px 0px 0px" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Season not found</div>
+							    		<div id="alertSeason_existinguser" class="alert alert-danger alert-block fade hide" style="margin: 5px 0px 0px 0px" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Already joined</div>
+							    		<button id="joinSeason" type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px">Join</button>
+							    		<!--button id="loginReturnBtn" type="button" class="btn btn-link" style="margin-top: 10px; font-style: italic">Can't remember the code?</button-->
 							    	</div>
 							    </div>
 							</form>
@@ -107,9 +109,9 @@
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a id="accountMenuHome" href="#" data-toggle="popover-dashboard" data-placement="bottom" title="Dashboard" data-content="Dashboard"><span class="glyphicon glyphicon-th" aria-hidden="true" ></span> </a></li>
-	        <li><a id="accountMenuSettings" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>&nbsp;<span class="caret"></span></a>
+	        <li><a id="accountMenuSettings" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>&nbsp;<span class="caret"></span></a>
 	        	<ul class="dropdown-menu" role="menu" aria-labelledby="accountMenuSettings">
-	        		<li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>&nbsp;Account Settings</a></li>
+	        		<li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>&nbsp;Account Settings</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="accountMenuLogout"><span class="glyphicon glyphicon-log-out" aria-hidden="true" ></span>&nbsp;Logout</a></li>
 				</ul>
 	        </li>
