@@ -73,11 +73,11 @@
       	<div class="form-group" >
       		<div class="form-inline">
 		      		<label for="seasonName" class="control-label col-xs-2">Season Name</label>
-		      		<div class="col-xs-3">
+		      		<div class="col-xs-3" id="seasonNameDiv">
 			    		<input type="text" placeholder="Name" class="form-control" id="seasonName" name="seasonName" data-required value="{{ seasonInfo.name }}"/>
 			    	</div>
 			   		<label for="seasonCode" class="control-label col-xs-2">Season Code</label>
-		      		<div class="col-xs-5" style="text-align: left">
+		      		<div class="col-xs-5" style="text-align: left" id="seasonCodeDiv">
 			    		<input type="text" placeholder="Code" class="form-control" id="seasonCode" name="seasonCode" data-required value="{{ seasonInfo.code }}"/>&nbsp;<a id="info-season-code" href="#" data-toggle="popover-seasoncode" data-placement="bottom" title="Season Code" data-content="Provide to players when signing up for season. Requirements: No spaces, 6 alpha numeric minimum."><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="cursor: pointer"></span></a>
 			    	</div>
 			</div>
@@ -119,10 +119,14 @@
 					<div class="row" style="padding: 0px 0px 10px 0px">
 						<div class="form-inline">
 							<div class="form-group col-xs-6">
-						    	<label for="gameGroup" class="col-xs-3">Group</label>
-						    	<input type="text" placeholder="ex. Week 1" class="col-xs-3" id="gameGroup_{{ _id }}" name="gameGroup" data-required value="{{ group }}"/>
-						    	<label for="seasonName" class="col-xs-3">Label</label>
-						    	<input type="text" placeholder="ex. Game 1" class="col-xs-3" id="gameLabel_{{ _id }}" name="gameLabel" data-required value="{{ name }}"/>
+								<div id="gameGroupContainer_{{_id}}">
+						    		<label for="gameGroup" class="col-xs-3">Group</label>
+							    	<input type="text" placeholder="ex. Week 1" class="col-xs-3" id="gameGroup_{{ _id }}" name="gameGroup" data-required value="{{ group }}"/>
+							    </div>
+							    <div id="gameLabelContainer_{{_id}}">
+						    		<label for="seasonName" class="col-xs-3">Label</label>
+						    		<input type="text" placeholder="ex. Game 1" class="col-xs-3" id="gameLabel_{{ _id }}" name="gameLabel" data-required value="{{ name }}"/>
+						    	</div>
 						    </div>
 						    <div class="form-group col-xs-4">
 						    	<label for="gameDate" class="col-xs-4">Date</label>
@@ -166,39 +170,48 @@
 			</form>
 			<div id="rowStatic_{{ _id }}">
 				<form class="form-inline">
-					<div class="col-xs-2">
-						<label>Group:&nbsp;</label>
+					<div class="col-xs-2" style="text-align: left">
+						<!--<label>Group:&nbsp;</label>-->
 						<span>{{ group }}</span>
 					</div>
-					<div class="col-xs-2">
-						<label>Label:&nbsp;</label>
+					<div class="col-xs-2" style="text-align: left">
+						<!--<label>Label:&nbsp;</label>-->
 						<span>{{ name }}</span>
 					</div>
-					<div class="col-xs-2">
-						<label>Date:&nbsp;</label>
+					<div class="col-xs-1" style="text-align: left">
+						<!--<label>Date:&nbsp;</label>-->
 						<span>{{ dateDisplay }}</span>
 					</div>
 					<div class="col-xs-2">
-						<label>{{ team1 }} vs. {{ team2 }}</label>
+						<label class="label{{ #if team1Winner }} label-success{{ else }} label-default {{ /if }}">{{ team1 }}</label> vs. <label class="label{{ #if team2Winner }} label-success{{ else }} label-default {{ /if }}">{{ team2 }}</label>
+						<button id="quickEditWin" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="padding-top:0px"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></button>
+						<div class="btn-group dropdown-menu pull-right" data-toggle="buttons" role="menu" aria-labelledby="quickEditWin" style="padding: 0px; min-width: 85px;">
+							<label class="btn btn-primary {{#if team1Winner }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-win" checked="{{#if team1Winner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="team1" autocomplete="off"> {{ team1 }}
+							</label>
+							<label class="btn btn-primary {{#if team2Winner }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-win" checked="{{#if team2Winner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="team2" autocomplete="off"> {{ team2 }}
+							</label>
+						</div> 
 					</div>
-					<div class="col-xs-2">
+					<div class="col-sm-3">
 						<label>Status:&nbsp;</label>
 						<span>{{ statusText }}</span>
+						<button id="quickEditStatus" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="padding-top: 0px"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true" ></span></button>
+						<div class="btn-group dropdown-menu" data-toggle="buttons" role="menu" aria-labelledby="quickEditStatus" style="width: 268px; padding: 0px">
+							<label class="btn btn-primary {{#if statusOpen }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-status" checked="{{#if statusOpen }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="1" autocomplete="off"> Open Picks
+							</label>
+							<label class="btn btn-primary {{#if statusClose }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-status" checked="{{#if statusClose }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="0" autocomplete="off"> Close Picks
+							</label>
+							<label class="btn btn-primary {{#if statusHidden }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-status" checked="{{#if statusHidden }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="2" autocomplete="off"> Hidden
+							</label>
+						</div> 
 					</div>
 					<div class="col-xs-2">
-						<button id="quickEditStatus" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true" ></span></button>
-						<div class="btn-group dropdown-menu" data-toggle="buttons" role="menu" aria-labelledby="quickEditStatus" style="width: 268px; padding: 0px">
-									<label class="btn btn-primary {{#if statusOpen }}active{{/if}}">
-										<input type="radio" class="btn-grp-quick-status" checked="{{#if statusOpen }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="1" autocomplete="off"> Open Picks
-									</label>
-									<label class="btn btn-primary {{#if statusClose }}active{{/if}}">
-										<input type="radio" class="btn-grp-quick-status" checked="{{#if statusClose }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="0" autocomplete="off"> Close Picks
-									</label>
-									<label class="btn btn-primary {{#if statusHidden }}active{{/if}}">
-										<input type="radio" class="btn-grp-quick-status" checked="{{#if statusHidden }}true{{/if}}" name="gameQuickStatusOpts_{{ _id }}" value="2" autocomplete="off"> Hidden
-									</label>
-								</div> 
-						<button id="editGameBtn" name="editGameBtn" type="button" class="btn btn-link" value="{{ _id }}" {{ editGameControlDisabled }} ><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>&nbsp;&nbsp;<button id="deleteGameBtn" type="button" class="btn btn-link" {{ editGameControlDisabled }} value={{ _id }}><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true" ></span></button> 
+						<button id="editGameBtn" name="editGameBtn" type="button" class="btn btn-link" value="{{ _id }}" {{ editGameControlDisabled }} style="padding-top: 0px"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button><button id="deleteGameBtn" type="button" class="btn btn-link" {{ editGameControlDisabled }} style="padding-top: 0px" value={{ _id }}><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true" ></span></button> 
 					</div>
 				</form>
 			</div>
