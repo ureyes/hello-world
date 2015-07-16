@@ -62,7 +62,11 @@
 			{{#if disablePick}}<span class="glyphicon glyphicon-lock" data-toggle="popover-locked" data-placement="bottom" title="Pick locked" data-content="Pick Locked"></span>{{/if}}
 		</td>
 		<td class="text-left">
-			<input type="text" id="totalPoints_{{_id}}" maxlength=3 size=4>
+			{{ #if pointsOn }}
+				<input type="text" id="totalPoints_{{_id}}" class="totalpoints" maxlength=4 size=3 value="{{ points }}">
+			{{ else }}
+				&nbsp;
+			{{ /if }}
 		</td>
 	</tr>
 </template>
@@ -127,8 +131,7 @@
 </template>
 
 <template name="gameRowPlayer">
-	<!--<td>{{ playerPick }}</td>-->
-	<td>{{ #if playerPick.status }}<span class="glyphicon glyphicon-ok text-info"></span>{{ else }}<label style="{{ #if playerPick.isWinner }}font-weight: bold; color: green; {{ /if }}">{{ playerPick.pick }}</label>{{ /if }}</td>
+	<td>{{ #if this.hidePick }}<span class="glyphicon glyphicon-ok text-info"></span>{{ /if }}{{ #if this.noPick }}&nbsp;{{/if }}{{ #if this.showPick }}<label style="{{ #if this.isWinner }}font-weight: bold; color: green; {{ /if }}">{{ this.pick }}</label>{{ /if }}</td>
 </template>
 
 <template name="gameViewLegend">

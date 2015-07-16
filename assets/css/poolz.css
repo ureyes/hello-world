@@ -76,3 +76,8 @@ label.radio-inline.checked, label.checkbox-inline.checked {
 	text-shadow: 1px 1px 2px #000 !important;
 	width: 100%; 
 }
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
