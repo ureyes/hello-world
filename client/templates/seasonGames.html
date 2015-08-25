@@ -63,7 +63,11 @@
 		</td>
 		<td class="text-left">
 			{{ #if pointsOn }}
-				<input type="text" id="totalPoints_{{_id}}" class="totalpoints" maxlength=4 size=3 value="{{ points }}">
+				{{ #if disablePick }}
+					{{ points }}
+				{{ else }}
+					<input type="text" id="totalPoints_{{_id}}" class="totalpoints" maxlength=4 size=3 value="{{ points }}">
+				{{/if}}
 			{{ else }}
 				&nbsp;
 			{{ /if }}
@@ -131,7 +135,7 @@
 </template>
 
 <template name="gameRowPlayer">
-	<td>{{ #if this.hidePick }}<span class="glyphicon glyphicon-ok text-info"></span>{{ /if }}{{ #if this.noPick }}&nbsp;{{/if }}{{ #if this.showPick }}<label style="{{ #if this.isWinner }}font-weight: bold; color: green; {{ /if }}">{{ this.pick }}</label>{{ /if }}</td>
+	<td>{{ #if this.hidePick }}<span class="glyphicon glyphicon-ok text-info"></span>{{ /if }}{{ #if this.noPick }}&nbsp;{{/if }}{{ #if this.showPick }}<label style="{{ #if this.isWinner }}font-weight: bold; color: green; {{ /if }}">{{ this.pick }}{{ #if this.usePoints}} - {{ this.points }}{{/if}}</label>{{ /if }}</td>
 </template>
 
 <template name="gameViewLegend">
