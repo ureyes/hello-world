@@ -52,11 +52,11 @@
 		<td class="text-left">{{ dateDisplay }}</td>
 		<td class="text-left">
 			<div class="btn-group btn-group-game-{{ _id }}" data-toggle="buttons">
-	      		<label class="btn btn-default {{#if pickTeam1}}btn-success active{{/if}} {{#if disablePick }}disabled{{/if}}">
-					<input type="radio" checked="{{#if pickTeam1}}true{{/if}}" class="btn-grp-status" name="gameviewteam_{{ _id }}" value="team1" autocomplete="off">{{ team1 }}
-				</label>&nbsp;
 				<label class="btn btn-default {{#if pickTeam2}}btn-success active{{/if}} {{#if disablePick}}disabled{{/if}}">
 					<input type="radio" checked="{{#if pickTeam2}}true{{/if}}"  class="btn-grp-status" name="gameviewteam_{{ _id }}" value="team2" autocomplete="off">{{ team2 }}
+				</label>&nbsp;
+				<label class="btn btn-default {{#if pickTeam1}}btn-success active{{/if}} {{#if disablePick }}disabled{{/if}}">
+					<input type="radio" checked="{{#if pickTeam1}}true{{/if}}" class="btn-grp-status" name="gameviewteam_{{ _id }}" value="team1" autocomplete="off">{{ team1 }}
 				</label>
 			</div>
 			{{#if disablePick}}<span class="glyphicon glyphicon-lock" data-toggle="popover-locked" data-placement="bottom" title="Pick locked" data-content="Pick Locked"></span>{{/if}}
@@ -131,7 +131,7 @@
 </template>
 
 <template name="gameRow">
-	<tr><td>{{ group }}</td><td>{{ name }}</td><td><label style="{{ #if team1Winner }}font-weight: bold; color: green;{{ else }} font-weight: normal; {{/if}}">{{ team1 }}</label> vs. <label style="{{ #if team2Winner }}font-weight: bold; color: green;{{ else }} font-weight: normal;{{/if}}">{{ team2 }}</label></td><td>{{ dateDisplay }}</td>{{ #each gameRowPlayers }} {{> gameRowPlayer }} {{ /each }}</tr>
+	<tr><td>{{ group }}</td><td>{{ name }}</td><td><label style="{{ #if team2Winner }}font-weight: bold; color: green;{{ else }} font-weight: normal;{{/if}}">{{ team2 }}</label> vs. <label style="{{ #if team1Winner }}font-weight: bold; color: green;{{ else }} font-weight: normal; {{/if}}">{{ team1 }}</label></td><td>{{ dateDisplay }}</td>{{ #each gameRowPlayers }} {{> gameRowPlayer }} {{ /each }}</tr>
 </template>
 
 <template name="gameRowPlayer">

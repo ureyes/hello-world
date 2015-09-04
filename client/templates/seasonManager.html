@@ -137,10 +137,10 @@
 					<div class="row" style="padding: 0px 0px 10px 0px">
 						<div class="form-inline" >
 							<div class="form-group col-xs-6" >
-					      		<label for="team1" class="col-xs-3">Home</label>
-					  			<input type="text" placeholder="ex. SF" class="col-xs-3" id="team1_{{ _id }}" name="team1" data-required value="{{ team1 }}"/>
-						    	<label for="team1" class="col-xs-3"> vs. Away</label>
+						    	<label for="team1" class="col-xs-3">Away</label>
 						    	<input type="text" placeholder="ex. NY" class="col-xs-3" id="team2_{{ _id }}" name="team2" data-required value="{{ team2 }}"/>
+						    	<label for="team1" class="col-xs-3"> vs. Home</label>
+					  			<input type="text" placeholder="ex. SF" class="col-xs-3" id="team1_{{ _id }}" name="team1" data-required value="{{ team1 }}"/>
 						    </div>
 							<div class="form-group col-xs-4">
 								<div class="btn-group" data-toggle="buttons">
@@ -192,14 +192,14 @@
 						<span>{{ dateDisplay }}</span>
 					</div>
 					<div class="col-xs-2">
-						<label class="label{{ #if team1Winner }} label-success{{ else }} label-default {{ /if }}">{{ team1 }}</label> vs. <label class="label{{ #if team2Winner }} label-success{{ else }} label-default {{ /if }}">{{ team2 }}</label>
+						<label class="label{{ #if team2Winner }} label-success{{ else }} label-default {{ /if }}">{{ team2 }}</label> vs. <label class="label{{ #if team1Winner }} label-success{{ else }} label-default {{ /if }}">{{ team1 }}</label>
 						<button id="quickEditWin" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="padding-top:0px"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></button>
 						<div class="btn-group dropdown-menu pull-right" data-toggle="buttons" role="menu" aria-labelledby="quickEditWin" style="padding: 0px; min-width: 85px;">
-							<label class="btn btn-primary {{#if team1Winner }}active{{/if}}">
-								<input type="radio" class="btn-grp-quick-win" checked="{{#if team1Winner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="team1" autocomplete="off"> {{ team1 }}
-							</label>
 							<label class="btn btn-primary {{#if team2Winner }}active{{/if}}">
 								<input type="radio" class="btn-grp-quick-win" checked="{{#if team2Winner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="team2" autocomplete="off"> {{ team2 }}
+							</label>
+							<label class="btn btn-primary {{#if team1Winner }}active{{/if}}">
+								<input type="radio" class="btn-grp-quick-win" checked="{{#if team1Winner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="team1" autocomplete="off"> {{ team1 }}
 							</label>
 							<label class="btn btn-primary {{#if noWinner }}active{{/if}}">
 								<input type="radio" class="btn-grp-quick-win" checked="{{#if noWinner }}true{{/if}}" name="gameQuickWinOpts_{{ _id }}" value="" autocomplete="off"> None
